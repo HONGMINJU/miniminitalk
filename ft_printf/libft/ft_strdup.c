@@ -15,13 +15,11 @@
 char	*ft_strdup(const char *s1)
 {
 	char	*new_ptr;
-	char	*str_ptr;
 	int		str_len;
 	int		i;
 
 	i = 0;
 	str_len = ft_strlen(s1);
-	str_ptr = (char *)s1;
 	new_ptr = malloc(str_len + 1);
 	if (!new_ptr)
 		return (0);
