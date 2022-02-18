@@ -16,20 +16,20 @@ SERVER = server
 FT_PRINTF_LIB = ./ft_printf/libftprintf.a
 
 SRC_M_PATH = ./src/
-# SRC_B_PATH = ./bonus/
+SRC_B_PATH = ./bonus/
 INC_M_PATH = ./include/
 INC_B_PATH = $(SRC_B_PATH)
 
 SRC_M = client.c\
 		server.c
-# SRC_B = client_bonus.c\
-# 		server_bonus.c
+SRC_B = client_bonus.c\
+		server_bonus.c
 
 SRCS_M = $(addprefix $(SRC_M_PATH), $(SRC_M))
-# SRCS_B = $(addprefix $(SRC_B_PATH), $(SRC_B))
+SRCS_B = $(addprefix $(SRC_B_PATH), $(SRC_B))
 
 OBJS_M = $(SRCS_M:.c=.o)
-# OBJS_B = $(SRCS_B:.c=.o)
+OBJS_B = $(SRCS_B:.c=.o)
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
@@ -40,25 +40,25 @@ all: $(CLIENT) $(SERVER)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# bonus:
-# 	make HAS_BONUS=1 all
+bonus:
+	make HAS_BONUS=1 all
 
-# ifdef HAS_BONUS
-# $(CLIENT): ./bonus/client_bonus.o
-# 	make -s -C ft_printf
-# 	$(CC) $(CFLAGS) -o $@ $^ $(FT_PRINTF_LIB)
+ifdef HAS_BONUS
+$(CLIENT): ./bonus/client_bonus.o
+	make -s -C ft_printf
+	$(CC) $(CFLAGS) -o $@ $^ $(FT_PRINTF_LIB)
 
-# $(SERVER): ./bonus/server_bonus.o
-# 	$(CC) $(CFLAGS) -o $@ $^ $(FT_PRINTF_LIB)
+$(SERVER): ./bonus/server_bonus.o
+	$(CC) $(CFLAGS) -o $@ $^ $(FT_PRINTF_LIB)
 
-# else
+else
 $(CLIENT): ./src/client.o
 	make -s -C ft_printf
 	$(CC) $(CFLAGS) -o $@ $^ $(FT_PRINTF_LIB)
 
 $(SERVER): ./src/server.o
 	$(CC) $(CFLAGS) -o $@ $^ $(FT_PRINTF_LIB)
-# endif
+endif
 
 clean:
 	$(RM) $(OBJS_M) $(OBJS_B)
