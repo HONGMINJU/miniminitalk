@@ -14,13 +14,13 @@
 
 struct sigaction	signalAction;
 
-void	handleSignal(int signo)
+void	handleSignal(int signo, siginfo_t *siginfo, void *unused)
 {
 	static unsigned char	msg = 0;
 	static int				digit = 0;
 
-	// unused = 0;
-	// siginfo = 0;
+	(void)unused;
+	(void)siginfo;
 	if (signo == SIGUSR1)
 		msg |= (1 << digit);
 	digit++;
