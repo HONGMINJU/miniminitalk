@@ -47,7 +47,6 @@ void	send(int s_pid, char *msg)
 	i = 0;
 	while (msg[i] != '\0')
 	{
-		ft_printf("let's send char : %c\n", msg[i]);
 		send_signal(s_pid, msg[i++]);
 	}
 	ft_printf("Server received message\n");

@@ -26,8 +26,7 @@ void	handleSignal(int signo, siginfo_t *siginfo, void *unused)
 	digit++;
 	if (digit == 8)
 	{
-		ft_printf("server receive msg : %c\n", msg);
-		//ft_printf("%c", msg);
+		ft_printf("%c", msg);
 		digit = 0;
 		msg = 0;
 	}
