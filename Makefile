@@ -51,14 +51,14 @@ all: $(CLIENT) $(SERVER)
 # $(SERVER): ./bonus/server_bonus.o
 # 	$(CC) $(CFLAGS) -o $@ $^ $(FT_PRINTF_LIB)
 
-else
+# else
 $(CLIENT): ./src/client.o
 	make -s -C ft_printf
 	$(CC) $(CFLAGS) -o $@ $^ $(FT_PRINTF_LIB)
 
 $(SERVER): ./src/server.o
 	$(CC) $(CFLAGS) -o $@ $^ $(FT_PRINTF_LIB)
-endif
+# endif
 
 clean:
 	$(RM) $(OBJS_M) $(OBJS_B)
