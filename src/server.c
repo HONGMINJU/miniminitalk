@@ -25,10 +25,11 @@ void	handleSignal(int signo, siginfo_t *siginfo, void *unused)
 	digit++;
 	if (digit == 8)
 	{
+		if (msg == 0)
+			kill(siginfo->si_pid, SIGUSR2);
 		ft_printf("%c", msg);
 		digit = 0;
 		msg = 0;
-		kill(siginfo->si_pid, SIGUSR2);
 	}
 }
 
