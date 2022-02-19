@@ -49,6 +49,7 @@ void	send(int s_pid, char *msg)
 	{
 		send_signal(s_pid, msg[i++]);
 	}
+	send_signal(s_pid, 0);
 }
 
 int	get_server_pid(int argc, char *argv[])
@@ -94,7 +95,7 @@ int	main(int argc, char *argv[])
 	ft_printf("Server pid : %d\n", serverPID);
 	ft_printf("try to send message : %s\n", argv[2]);
 	send(serverPID, argv[2]);
-	while (1)
-		pause();
+	// while (1)
+	// 	pause();
 	return (0);
 }
