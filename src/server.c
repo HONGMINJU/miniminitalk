@@ -27,7 +27,7 @@ void	handleSignal(int signo, siginfo_t *siginfo, void *unused)
 	{
 		if (msg == 0)
 		{
-			ft_printf("server send signal to client : %d", siginfo->si_pid);
+			ft_printf("\nserver send signal to client : %d\n", siginfo->si_pid);
 			kill(siginfo->si_pid, SIGUSR2);
 		}
 		ft_printf("%c", msg);
