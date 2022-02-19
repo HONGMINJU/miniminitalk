@@ -71,14 +71,13 @@ int	get_server_pid(int argc, char *argv[])
 
 void	handleSignal(int signo, siginfo_t *siginfo, void *unused)
 {
-	static unsigned char	msg = 0;
-	static int				digit = 0;
-
 	(void)unused;
 	(void)siginfo;
+
 	if (signo == SIGUSR2)
 		ft_printf("\n=======Server received message=======\n");
 }
+
 
 int	main(int argc, char *argv[])
 {
