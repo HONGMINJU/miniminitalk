@@ -74,7 +74,7 @@ void	handleSignal(int signo, siginfo_t *siginfo, void *unused)
 {
 	(void)unused;
 	(void)siginfo;
-
+	ft_printf("\n==============\n");
 	if (signo == SIGUSR1)
 	{
 		ft_printf("\n=======Server received message=======\n");
