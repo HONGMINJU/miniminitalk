@@ -75,7 +75,7 @@ void	handleSignal(int signo, siginfo_t *siginfo, void *unused)
 	(void)unused;
 	(void)siginfo;
 
-	if (signo == SIGUSR2)
+	if (signo == SIGUSR1)
 	{
 		ft_printf("\n=======Server received message=======\n");
 		exit(1);
@@ -90,7 +90,7 @@ int	main(int argc, char *argv[])
 	signalAction.sa_flags = SA_SIGINFO;
 	signalAction.sa_sigaction = &handleSignal;
 	sigemptyset(&signalAction.sa_mask);
-	sigaddset(&signalAction.sa_mask, SIGUSR2);
+	sigaddset(&signalAction.sa_mask, SIGUSR1);
 	serverPID = get_server_pid(argc, argv);
 	ft_printf("Server pid : %d\n", serverPID);
 	ft_printf("try to send message : %s\n", argv[2]);
