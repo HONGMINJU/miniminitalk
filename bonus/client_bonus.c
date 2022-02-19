@@ -49,7 +49,6 @@ void	send(int s_pid, char *msg)
 	{
 		send_signal(s_pid, msg[i++]);
 	}
-	ft_printf("Server received message\n");
 }
 
 int	get_server_pid(int argc, char *argv[])
@@ -70,10 +69,26 @@ int	get_server_pid(int argc, char *argv[])
 	return (s_pid);
 }
 
+void	handleSignal(int signo, siginfo_t *siginfo, void *unused)
+{
+	static unsigned char	msg = 0;
+	static int				digit = 0;
+
+	(void)unused;
+	(void)siginfo;
+	if (signo == SIGUSR2)
+		ft_printf("\n=======Server received message=======\n");
+}
+
 int	main(int argc, char *argv[])
 {
+	struct sigaction	signalAction;
 	int	serverPID;
 
+	signalAction.sa_flags = SA_SIGINFO;
+	signalAction.sa_sigaction = &handleSignal;
+	sigemptyset(&signalAction.sa_mask);
+	sigaddset(&signalAction.sa_mask, SIGUSR2);
 	serverPID = get_server_pid(argc, argv);
 	send(serverPID, argv[2]);
 	return (0);

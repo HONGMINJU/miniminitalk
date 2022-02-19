@@ -20,15 +20,15 @@ void	handleSignal(int signo, siginfo_t *siginfo, void *unused)
 	static int				digit = 0;
 
 	(void)unused;
-	(void)siginfo;
 	if (signo == SIGUSR1)
 		msg |= (1 << digit);
 	digit++;
-	if (digit == 32)
+	if (digit == 8)
 	{
 		ft_printf("%c", msg);
 		digit = 0;
 		msg = 0;
+		kill(siginfo->si_pid, SIGUSR2);
 	}
 }
 
@@ -43,7 +43,7 @@ void setSigaction(void)
 
 void printPid(void)
 {
-	ft_printf("============== PID(server) : %d ==============\n", getpid());
+	ft_printf("======= PID(server) : %d =======\n", getpid());
 }
 
 int	main(void)
