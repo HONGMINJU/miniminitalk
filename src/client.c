@@ -88,6 +88,8 @@ int	main(int argc, char *argv[])
 	sigemptyset(&signalAction.sa_mask);
 	sigaddset(&signalAction.sa_mask, SIGUSR2);
 	serverPID = get_server_pid(argc, argv);
+	ft_printf("Server pid : %d\n", serverPID);
+	ft_printf("try to send message : %s\n", argv[2]);
 	send(serverPID, argv[2]);
 	return (0);
 }
